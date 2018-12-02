@@ -1,0 +1,311 @@
+#!/usr/bin/env stack
+-- stack --install-ghc runghc --package raw-strings-qq-1.1 --package split-0.2.3.3 --package containers-0.6.0.1
+
+{-# LANGUAGE QuasiQuotes #-}
+import Text.RawString.QQ
+import Data.List
+import Data.List.Split
+
+input :: String
+input = [r|tqzvwnogbarflkpcbdewsmjhxi
+tqyvunogzarfckpcbdewsmzhci
+tqyvunojzarflkpcbdcwsmyhxi
+tqyvunogzarclkpcbdewmmjrxi
+hqyvunogzarflkpcbczwsmjhxi
+tqyvunogzarflppcudewsmjhei
+tqrvunogzarflkpcbpewsmjhdi
+aqyvunogzarflkpcbdewsjjsxi
+tqyvtnogzarflkkcbdewymjhxi
+tcyeunogzarfkkpcbdewsmjhxi
+tqyvunozzarfvkpcbdewsqjhxi
+tkyvuwjgzarflkpcbdewsmjhxi
+tqevunogzarflkpnbdkwsmjhxi
+tqyvunogqarflkpcppewsmjhxi
+tqyvunsgzarflkpcbrewsmjhxk
+tqyvunogzarffkpdbnewsmjhxi
+tqyvunogvarflkpjbdewsojhxi
+tqyvgnogzarflkpfbdswsmjhxi
+tqyvunogzarfxkpcbtersmjhxi
+tqyvukhgzarflupcbdewsmjhxi
+tqyvdnoozyrflkpcbdewsmjhxi
+tqyvunogzorflkpcbdewsvjhxd
+tqyvunzqzarflkpcbdewxmjhxi
+tqykunogzarulkpcbdhwsmjhxi
+tqycdnogzarflkpcbdewsmjhxz
+eqyvunogzarflkpcbdhwqmjhxi
+cqyvunogzaralkpcbdewsmjvxi
+vqyvunogzarflklcbeewsmjhxi
+tqyvunogzarffkpcqdewlmjhxi
+eqyvunogzarflkpcbdejsmahxi
+tqyvunogjarflkocsdewsmjhxi
+tqzvunogzanflkpcbdewsmjhxg
+tqycunogzarflkpabdewsmkhxi
+tqyvunogzarnlkpcbdewimjaxi
+tqyvunogzarfzkpcbdepsyjhxi
+gqykunogzarelkpcbdewsmjhxi
+tqyvuwogzarflkpcbdrwsmjmxi
+tqdqunogzarflkpcbdewsvjhxi
+tqmvunbgzarflkpcbdewsvjhxi
+tqyvunogzarflkpcbheesmjhdi
+tqxvunogzarfxkpcbdewsmhhxi
+tqyvunogzarflkpabdjosmjhxi
+tqyvugogztrflkpybdewsmjhxi
+tqyvundgzarflkxcbdewsmjhmi
+tqyvunogzurfgkpcbdeksmjhxi
+tqyvunokzarfckpcbdewsojhxi
+tqyvufobzarflkpcldewsmjhxi
+tqyvunogznrflkncbdeusmjhxi
+tqyvuncgzarfxkpcmdewsmjhxi
+oqyvunogzarflkpybdewbmjhxi
+tqyvjnogqarfmkpcbdewsmjhxi
+tqyvunogzacflkpcidewsmjhwi
+tqyvunogzarflkpcbqlwxmjhxi
+tqyvunogzarflkpnbhewsvjhxi
+vqyiunogzarflkpcbdewsmjhqi
+tbyvuncgzarfljpcbdewsmjhxi
+tqylunogzarflkpcldexsmjhxi
+tqyvulogzarflktcbdewsxjhxi
+tqyvmnlgzarflkpcbxewsmjhxi
+tqyvunogzartlkpcbdewsmihxp
+nqyvunogzarflkpcbdewsmnwxi
+tqyvunogzarflkpczdewsmjcxj
+tzyvunogzariwkpcbdewsmjhxi
+tqyiufogzarflipcbdewsmjhxi
+oqyvunogzasflkpcbdewsmjhxv
+tqyvunoqmarflkpcwdewsmjhxi
+tqrvunogzarflkpqbdewnmjhxi
+tqyvunogzarmlkocbdewsmjhri
+tqyvunogzakflkpcbveasmjhxi
+tqyvunorearflkpcbdewsmfhxi
+tqynrnogzarflkpcbdewsmjhxp
+tiyvueogzaeflkpcbdewsmjhxi
+tqyrunogzarflkpccdewbmjhxi
+tqtvunogzarflkpcbdewbnjhxi
+tqyvfnogzarflhpcbdewsmjqxi
+tqyjunoazarflkpcbdewssjhxi
+tqyvunxizarflkpcbdewsmjnxi
+tqyvunogzarfhkpobdewsmjhai
+tqyaunogzanflkpcbxewsmjhxi
+tqyvunogzarflkpsbuewsmjmxi
+tqyvunogzarzlkwybdewsmjhxi
+tqyvunogzarflkpibdawsmhhxi
+tqyvunogzarflkycbdewamjwxi
+tqyvunourarflkpcbdewsujhxi
+tqyvnnogzirflkpcbdewsdjhxi
+tayvunogzauflkpcqdewsmjhxi
+tqyvunobzfrflkscbdewsmjhxi
+tqygvnogzarflkpcbdewsmjnxi
+oqyvunogzarflkpcbdewsmjsgi
+tqyvunokzarflkpcbdewshjhii
+tqyvunobzarflkvcbdewskjhxi
+aqyvunogvarflkpcbdlwsmjhxi
+tqyvunogzmrrlbpcbdewsmjhxi
+tqyvunggzaqolkpcbdewsmjhxi
+tqyvunogqarflkpybdewsmjaxi
+tqyvunogzxrflkpcxsewsmjhxi
+zqyvunogzarflppcbdewsmjhni
+tqvvunogzakslkpcbdewsmjhxi
+tqyrunogzarzlkpcbdewsmjtxi
+tqyvhnogzarfxkpcbdewqmjhxi
+tqyvunogzarflkecbdewgdjhxi
+tqyvuwogzerfhkpcbdewsmjhxi
+tqmvunogzarflkpcbddwsmdhxi
+tqyvunogzarflcqcbdewsmihxi
+tqyvunogzarvlkpcbdewsmjmxd
+tqyvknogzarfllncbdewsmjhxi
+tqyvunogzarflbpcbdrwsajhxi
+tqyvunogzarfukpcbddwsmjhii
+tqyvuvojzahflkpcbdewsmjhxi
+tqyvunogzarfchpcbdeqsmjhxi
+wqivueogzarflkpcbdewsmjhxi
+tqyvunogzwrflkpcbdewstjhxz
+tqyvunogzarfloscbdewsmjhxf
+tqfbuiogzarflkpcbdewsmjhxi
+tqyvfuogzarflkpcxdewsmjhxi
+tqyvunogzarflkpcpdewsmgqxi
+tqyvunogzdrflkpcbdewsmqhci
+tqyvunogzartlkpcbdewsmjpxj
+tqyfunogzarfwkpcbdewsmwhxi
+tqyvuntgzarflkjcmdewsmjhxi
+tqyvunqfzarflkpckdewsmjhxi
+nqyvunogznrflkpcbiewsmjhxi
+tqymunobzarflkccbdewsmjhxi
+tqyvunogzaoflkprbdewzmjhxi
+tqyvunogzaiflkpcvdewbmjhxi
+tqwvunogzarfzkpcbdewsmjhxx
+txhvunogzarflkpcbdewsijhxi
+tqyeunogkarflkicbdewsmjhxi
+tqylunogzarylkpcbdewsmkhxi
+tqyvriogzarflkpcbdewsmohxi
+tqyvunogzsrflkpcbdeasijhxi
+tqyvunogzarflkpcbfewcmjhxh
+tqyvunoozvrflkpcbdewimjhxi
+tqyvunogqayflkpcidewsmjhxi
+tqyounogzarflkpccdewsmjhxg
+tqgvunogsarflkpcbdewqmjhxi
+tqevunogzarflkpcbmewsmjhpi
+tqivunogzarflkgcbdewqmjhxi
+tqyuunogzlrflkgcbdewsmjhxi
+xqyvbnogznrflkpcbdewsmjhxi
+tqyvunogzarfjkpebdewsmnhxi
+tqyvvnogzarfskpcxdewsmjhxi
+thovunogzarflkpcbdewsmjhvi
+tqyvunugzarflkpcpdewsmjrxi
+tcyvvnogzarflkdcbdewsmjhxi
+tqdfunogzarflkpbbdewsmjhxi
+tqyvunogzarflkpcbdnwsejzxi
+tqyvunivkarflkpcbdewsmjhxi
+tqyvunogzawflopcbdewsmjhmi
+tqyvunogzarflkpcbdkwsdjqxi
+tqyvunodzarflkpcbdewlmjhei
+oqyvunoozarflkpcbdemsmjhxi
+tiyvunogzarjlkpcbdewfmjhxi
+tqrvunogearflkpcbdewsojhxi
+tqyvunkgzarflkpcbdcwtmjhxi
+tqmvunogzarflkpcbdpwsmjtxi
+tqyvunogzarflkpcydeptmjhxi
+tqyvunkglarflkpcbdfwsmjhxi
+tqyaunogzarflkpcbzeesmjhxi
+tqyvunogzarrlkpcbdkwsmjhui
+tpyvunogzarflkqcbdewsmjhxd
+tvyvunogzarfkkpcbdewsajhxi
+gqynunogzarflepcbdewsmjhxi
+zqvvunogzarflkpcbdexsmjhxi
+tqyyunogzawflkpcbdewsmjhxw
+tfyvunogzarflkpcbdewomjrxi
+tqyeunogzvrflrpcbdewsmjhxi
+nqyvunogzarftkpabdewsmjhxi
+tzyvunogzariwkpcbdewmmjhxi
+tiyvunogzarflkpcbbewsmjhxa
+tqydujoyzarflkpcbdewsmjhxi
+tqyvunpgzarflkpcbdeysmjhwi
+tqyvunogvarllkpcbdewsmshxi
+tqyvunogzbrvlkpcbdewsmjhxp
+tcyvueogzarflkacbdewsmjhxi
+tqyvunogzrhflkpcbdetsmjhxi
+tqavunogzrdflkpcbdewsmjhxi
+tqyvunogzjrflkpcbdewstjhki
+tqyqunolzarflkpcbdewbmjhxi
+tqyvunogzarflkqczdgwsmjhxi
+tqyvunogzqrfrkpcbrewsmjhxi
+tqyvcnogzhrflkacbdewsmjhxi
+tqyvunogzarflkpcbdewsmdhtk
+tqyvunoggarftkpcbjewsmjhxi
+tvyvunogzarfkkpcpdewsmjhxi
+tqyvunogzawflkpcndedsmjhxi
+tqyvunogzrrflkpcbdemsmmhxi
+tqyvunogzarclkpcbrpwsmjhxi
+tryvunogztrflkpcbbewsmjhxi
+cqyvundgzarflkpcbdewgmjhxi
+tqyvunogzarflktcbkewsmjqxi
+tqyvjuogzarflkpcadewsmjhxi
+tqyvunogzyrflkpcbbxwsmjhxi
+ttyvunogzarflkpcbdewsnmhxi
+tqyvunogzarflkpcbdeqsmlhki
+fqyvugogzarflapcbdewsmjhxi
+tqyvunogzartlkppbdewszjhxi
+tqyvunfgztrflzpcbdewsmjhxi
+tqyvunogmazflkpcbdewsmjhki
+tqyvunzdzarflkpcbdewsmjhvi
+tqyvunogzarflkpqbzewsujhxi
+tqyvunogzarzlkpcbeewymjhxi
+tqyounogzarflkpcbdewsnwhxi
+tqysunogsaiflkpcbdewsmjhxi
+tqdvunogdarflkpcboewsmjhxi
+teyvunogzarflkscbdfwsmjhxi
+tqyvunoazarflkpcbdvwsmjhpi
+tqyvunooearflkpcbdewrmjhxi
+tqyvunoszarflnrcbdewsmjhxi
+tqyvunogzalflkpcblewsjjhxi
+uqlvunkgzarflkpcbdewsmjhxi
+tqyvunobzarflkpcidewsmjhvi
+tnyvunogzarflkpcbdnwamjhxi
+tqyoudogzarflkpcbdgwsmjhxi
+tqyvunoggarflkpcbmewsmwhxi
+tqykunogzazflkpcbddwsmjhxi
+tfyvunogzarflkpcbdewsmjhgo
+tqyvunogztrflkpcbdewoojhxi
+tqyvunogzarflkpcbdewbmjoni
+tmyvunogzalflkpabdewsmjhxi
+tqyvunogzarflkpbbvewqmjhxi
+tqyvunofzarflkpcwdexsmjhxi
+tayvunogzasflkpcbdewsmhhxi
+tqyvlnogzarflkpcbdewsmjwxd
+tvyvunogzarflkpcbdewhmjrxi
+tqyvunogzarplkpcsdewsmihxi
+tqyvunogzarplklcbdewsmjtxi
+rqbvunogzarhlkpcbdewsmjhxi
+tqyvuxogzarftkpcbdewsmthxi
+tqtvunogzarfikpczdewsmjhxi
+tqyvunwgzarflkpcbdewsmjxxk
+tqygunogzarzlkpnbdewsmjhxi
+tqyvunogzarjlkpcbdbwswjhxi
+tqyvunogzalfnkpcbdewsmjhxf
+tqyucuogzarflkpcbdewsmjhxi
+tzyvunogzvrflkpcbdewsmjaxi
+tjyvunlgzarflkpcbdewgmjhxi
+tqyvcnogzarklkpcbdewsmjhfi
+tqyvunogzaaflkpsbaewsmjhxi
+tsyvunogzarflkpctdewsmbhxi
+tqyeunbgzarflkpcbdewrmjhxi
+tqyvunogzcrflqpcbdeismjhxi
+eqylunogzarflkpcbdewsmjhxy
+tqyvundgzarflkpcbdewmmnhxi
+tzyvunogzarflkpcndewsmjhxb
+tkyvunogzxrflkpcbdewfmjhxi
+tqyvunogzarflkxcbdzwsmjfxi
+kqavunogzarflkycbdewsmjhxi
+tqyvunogzarjlkpcbdxwkmjhxi
+tqyvinogzarfqkpcbdewsmjpxi|]
+
+boxList :: [String]
+boxList = splitOn "\n" input
+  
+countLetter :: [(Char,Int)] -> Char -> [(Char,Int)]
+countLetter [] c = [(c,1)]
+countLetter l@((c,n):rest) d
+ | c == d = [(c,n+1)] ++ rest
+ | otherwise = [(d,1)] ++ l
+
+countLetters :: String -> [(Char,Int)]
+countLetters s = foldl countLetter [] ( sort s )
+
+exactly :: Int -> (Char,Int) -> Bool
+exactly n (_,k) = (n == k)
+
+exactlyTwoOfSomeLetter :: String -> Bool
+exactlyTwoOfSomeLetter s = any (exactly 2) ( countLetters s ) 
+  
+exactlyThreeOfSomeLetter :: String -> Bool
+exactlyThreeOfSomeLetter s = any (exactly 3) ( countLetters s ) 
+
+checksum :: [String] -> Int
+checksum l = (length (filter exactlyTwoOfSomeLetter l)) * (length (filter exactlyThreeOfSomeLetter l))
+
+differsByOne :: String -> String -> Bool
+differsByOne [] [] = False
+differsByOne (a:b) (c:d)
+  | a/=c = (b==d)
+  | otherwise = differsByOne b d
+
+findMatch :: String -> [String] -> Maybe String
+findMatch x l =
+  case filter (differsByOne x) l of
+    [] -> Nothing
+    (a:b) -> Just a
+
+distance1 :: [String] -> Maybe (String, String)
+distance1 [] = Nothing
+distance1 (x:s) =
+  case findMatch x s of
+    Nothing -> distance1 s
+    Just y -> Just (x, y)
+    
+main :: IO ()
+main = putStrLn (show (checksum boxList)) >>
+  putStrLn( show (distance1 boxList))
+
+-- tzyvunogzariwkpcbdewsmjhxi
+-- tzyvunogzariwkpcbdewmmjhxi
+--                     ^
+-- tzyvunogzariwkpcbdewmjhxi
