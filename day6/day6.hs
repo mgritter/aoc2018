@@ -3,7 +3,7 @@
 
 {-# LANGUAGE QuasiQuotes #-}
 import Text.RawString.QQ
-import Data.List (minimumBy,(\\),intercalate,sortBy)
+import Data.List (minimum,maximum,(\\),intercalate,sortBy)
 import Data.List.Split (splitOn)
 
 input = [r|183, 157
@@ -121,8 +121,25 @@ reportArea c =
 
 report = intercalate "\n" [ reportArea c | c <- internalPoints ]
 
+-- Part 2 --
+-- We want the locus of all points with d(1) + d(2) + ... + d(50) <= 10000
+
+minX = minimum (map fst points)
+maxX = maximum (map fst points)
+minY = minimum (map snd points)
+maxY = maximum (map snd points)
+
+rasterScanArea = [(i,j) | i <- [minX..maxX], j <- [minY..maxY] ]
+
+sumOfDistances :: [Coord] -> Coord -> Int
+sumOfDistances cs c = sum (map (manhattanDistance c) cs)
+
+safeArea = length (filter (\c -> sumOfDistances points c < 10000) rasterScanArea )
+
 main :: IO ()
 main =
   putStrLn (show externalPoints) >>
   putStrLn (show internalPoints) >>
   putStrLn report
+  putStrLn (show safeArea)
+    
