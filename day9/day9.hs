@@ -3,38 +3,34 @@
 
 import qualified Data.Map.Strict as Map
 import Data.List (intercalate,scanl,(!!),foldl',maximum)
+import qualified Circle as Circle
+import Debug.Trace
 
 type Marble = Int
-type Circle = [Int]
+type Board = Circle.Circle
 
-start :: Circle
-start = [0]
+start :: Circle.Circle
+start = Circle.singleton 0
 
 data Round =
   Round {
    player :: Int,
    -- Current position will always be location 0 in the circle
-   circle :: Circle,
+   circle :: Board,
    score :: Map.Map Int Int
-  } deriving (Show)
+  }
 
 -- start with [current 1 2 ...]
 -- insert the marble [current 1 marble 2 ...]
 -- make current the nely inserted [marble 2 ...] ++ [current 1]
-insertMarble :: Circle -> Marble -> Circle
-insertMarble (c:c1:ms) m =
-  (m:ms) ++ [c, c1]
-insertMarble (c:[]) m = [m, c]
+insertMarble :: Board -> Marble -> Board
+-- insertMarble _ m | trace ("insertMarble " ++ (show m) ) False = undefined
+insertMarble c m = Circle.insert (Circle.next (Circle.next c)) m
 
--- start with [current ... m8 m7 m6 m5 m4 m3 m2 m1]
--- remove m7 and make m6 current
--- [m6 .. m1] ++ [current ... m8] 
-removeMarble :: Circle -> (Circle, Marble)
-removeMarble a =
-  let len = length a
-      parts = splitAt (len - 7) a in
-    ( (tail (snd parts)) ++ (fst parts),
-      (head (snd parts)) )
+prev7 = Circle.prev . Circle.prev . Circle.prev . Circle.prev . Circle.prev . Circle.prev . Circle.prev
+
+removeMarble :: Board -> (Board, Marble)
+removeMarble c = Circle.remove (prev7 c)
           
 nextPlayer :: Int -> Int -> Int
 nextPlayer numPlayers x = if x == numPlayers then 1 else x+1
@@ -51,18 +47,19 @@ nextRound numPlayers (Round p circle score) m
         circle' = fst result        
         points = removed + m
         score' = Map.alter (increaseScore points) p score in
-      Round (nextPlayer numPlayers p) circle' score'
+      result `seq` Round (nextPlayer numPlayers p) circle' score'
   | otherwise =
-    let circle' = insertMarble circle m in
-      Round (nextPlayer numPlayers p) circle' score
+    let circle' = insertMarble circle m
+        player' = (nextPlayer numPlayers p) in
+      circle' `seq` player' `seq` Round (nextPlayer numPlayers p) circle' score
       
 main :: IO ()
 
-showCircle :: Circle -> String
-showCircle c = intercalate " " (map show c)
+showBoard :: Board -> String
+showBoard c = intercalate " " (map show (Circle.toList c))
 
 showGame :: Round -> String
-showGame (Round p circle score) = "[" ++ (show p) ++ "] " ++ (showCircle circle)
+showGame (Round p circle score) = "[" ++ (show p) ++ "] " ++ (showBoard circle)
 
 round0 = Round 1 start Map.empty
 
@@ -86,4 +83,6 @@ main = putStrLn (showHistory 9 25) >>
        putStrLn (showHighScore 17 1104) >>
        putStrLn (showHighScore 21 6111) >>
        putStrLn (showHighScore 30 5807) >>
-       putStrLn (showHighScore 470 72170)
+       putStrLn (showHighScore 470 72170) >>
+       putStrLn (showHighScore 470 7217000)
+
