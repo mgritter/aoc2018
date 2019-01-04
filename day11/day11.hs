@@ -85,11 +85,11 @@ areaSum a y x size = let
 
 sums serialNumber = partialSums (fuelCellLevel serialNumber)
 
--- maximum' = foldl' max (0,0,0,0)
+maximum' = foldl' max (0,0,0,0)
 
 maxSquareK :: Int -> (Int,Int,Int,Int)
 maxSquareK sn = let a = sums sn in
-  maximum [ (areaSum a y x size, x, y, size) |
+  maximum' [ (areaSum a y x size, x, y, size) |
             size <- [1..300],
             x <- [1..301-size],
             y <- [1..301-size] ]
